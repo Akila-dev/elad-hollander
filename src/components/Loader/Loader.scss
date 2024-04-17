@@ -5,6 +5,11 @@
     justify-content: center;
     align-items: center;
 
+    background: url('../../assets/bgWhite.png');
+    background-color: var(--white-color);
+    background-size: cover;
+    background-repeat: repeat;
+
     .app__loader-logo_container{
         width: 100px;
         height: 100px;
