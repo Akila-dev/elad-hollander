@@ -5,8 +5,8 @@ import {
   About,
   Footer,
   Header,
-  Skills,
-  Testimonial,
+  Mentorship,
+  Lectures,
   Services,
 } from './container';
 import { Navbar } from './components';
@@ -18,8 +18,8 @@ const App = () => (
     <Header />
     <About />
     <Services />
-    {/* <Skills />
-    <Testimonial /> */}
+    <Lectures />
+    {/* <Mentorship /> */}
     <Footer />
   </div>
 );
