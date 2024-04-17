@@ -12,7 +12,11 @@ import { urlFor, client } from '../../client';
 import './Mentorship.scss';
 
 const MentorshipCard = ({ img, title, description, id }) => (
-  <div className="mentorship-card">
+  <motion.div
+    whileInView={{ scale: [0.8, 1] }}
+    transition={{ type: 'spring', stiffness: 700, damping: 35 }}
+    className="mentorship-card"
+  >
     <div className="image-container">
       <img src={urlFor(img)} alt={title} />
     </div>
@@ -20,7 +24,7 @@ const MentorshipCard = ({ img, title, description, id }) => (
       <h3>{title}</h3>
       <p>{description}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 const Mentorship = () => {

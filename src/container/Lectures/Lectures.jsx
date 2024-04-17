@@ -113,7 +113,12 @@ const Lectures = () => {
       </div>
 
       {/* QUOTE */}
-      <div className="quote-container">
+      <motion.div
+        // initial={{ scale: 0.5 }}
+        whileInView={{ scale: [0.8, 1] }}
+        transition={{ type: 'spring', stiffness: 700, damping: 35 }}
+        className="quote-container"
+      >
         <p className="quote-text">
           <BiSolidQuoteRight className="quote-icon" />
           <i>
@@ -131,7 +136,7 @@ const Lectures = () => {
             <i>Business Consultant</i>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {showPopup && (
         <LecturePopup
