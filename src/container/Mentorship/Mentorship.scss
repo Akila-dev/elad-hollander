@@ -274,8 +274,8 @@
   padding: 1rem;
   align-self: stretch;
   height: 100%;
-  width: 300px;
-  min-width: 300px;
+  width: 100%;
+  cursor: pointer;
   // align-items: center;
 
   .icon-container{
@@ -302,15 +302,15 @@
       border-radius: 10px;
     }
   }
-
+  
   .text-container{
     display: flex;
     flex-direction: column;
     gap: 7px;
     padding: 10px;
 
+
     p{
-      height: 45px;
       text-overflow: ellipsis;
       overflow: hidden;
     }
@@ -319,4 +319,17 @@
       text-align: center;
     }
   }
+  @media screen and (min-width: 820px) {
+    width: 300px;
+    min-width:300px;
+  }
+}
+
+
+.clipped-height{
+  height: 45px;
+}
+
+.img-clipped-height{
+  height: 100px !important;
 }

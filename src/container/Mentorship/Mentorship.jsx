@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 import React, { useState, useEffect } from 'react';
@@ -11,23 +12,66 @@ import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Mentorship.scss';
 
-const MentorshipCard = ({ img, title, description, id }) => (
-  <motion.div
-    whileInView={{ scale: [0.8, 1] }}
-    transition={{ type: 'spring', stiffness: 700, damping: 35 }}
-    className="mentorship-card"
-  >
-    <div className="image-container">
-      <img src={urlFor(img)} alt={title} />
-    </div>
-    <div className="text-container">
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-  </motion.div>
-);
+const MentorshipCard = ({
+  img,
+  title,
+  description,
+  id,
+  setCurrentId,
+  currentId,
+}) => {
+  const [hovering, setHovering] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    if (currentId !== id) {
+      setShowContent(false);
+    }
+  }, [currentId]);
+
+  return (
+    <motion.div
+      whileInView={{ scale: [0.8, 1] }}
+      transition={{ type: 'spring', stiffness: 700, damping: 35 }}
+      onHoverStart={() => setHovering(true)}
+      onHoverEnd={() => setHovering(false)}
+      onClick={() => {
+        setCurrentId(id);
+        setShowContent((prev) => !prev);
+      }}
+      className="mentorship-card"
+    >
+      <motion.div
+        layout
+        transition={{ type: 'spring', stiffness: 700, damping: 25 }}
+        className={`image-container ${
+          currentId ? showContent && 'img-clipped-height' : ''
+        }`}
+      >
+        <img src={urlFor(img)} alt={title} />
+      </motion.div>
+      <div className="text-container">
+        <h3
+          style={{
+            color: hovering ? 'var(--secondary-color)' : 'var(--black-color)',
+          }}
+        >
+          {title}
+        </h3>
+        <motion.p
+          layout
+          transition={{ type: 'spring', stiffness: 700, damping: 25 }}
+          className={showContent ? '' : 'clipped-height'}
+        >
+          {description}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+};
 
 const Mentorship = () => {
+  const [currentId, setCurrentId] = useState(null);
   const translated = useStore((state) => state.translated);
 
   const [mentorship, setMentorship] = useState([]);
@@ -56,9 +100,6 @@ const Mentorship = () => {
 
           I take a Founder-Centric Approach. My philosophy revolves around working intimately with founders. Our partnership will catalyze your venture's evolution, propelling it to the next stage.
           `}</p>
-            {/* <span>Business Mentor</span>
-            <span>Business Consultant</span>
-            <span>Educator</span> */}
           </div>
         </div>
         <div className="mentorship-content_right">
@@ -70,7 +111,9 @@ const Mentorship = () => {
                 description={
                   translated ? service.descriptionHeb : service.descriptionEn
                 }
-                id={i + 1}
+                setCurrentId={setCurrentId}
+                currentId={currentId}
+                id={i}
               />
             </div>
           ))}

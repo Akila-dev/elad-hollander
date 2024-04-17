@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 import { BsArrowRight } from 'react-icons/bs';
 import { FaHandshakeAngle } from 'react-icons/fa6';
@@ -17,10 +17,11 @@ import './Lectures.scss';
 
 const LectureCard = ({ img, title, excerpt, onClick }) => (
   <motion.div
-    whileInView={{ opacity: 1 }}
+    whileInView={{ scale: [0.8, 1] }}
     whileHover={{ scale: 1.1 }}
     whileTap={{ scale: 0.9 }}
-    transition={{ duration: 0.5, type: 'tween' }}
+    // transition={{ duration: 1, type: 'tween' }}
+    transition={{ type: 'spring', stiffness: 700, damping: 35 }}
     className="lecture-card"
     onClick={onClick}
   >
@@ -52,17 +53,27 @@ const LecturePopup = ({ img, title, content, close }) => {
   }, []);
 
   return (
-    <motion.div className="lecture-popup-container">
-      <div ref={ref} className="lecture-popup-content">
-        <div className="image-container">
-          <img src={urlFor(img)} alt={title} />
-        </div>
-        <div className="text-container">
-          <h3>{title}</h3>
-          <p>{content}</p>
-        </div>
-      </div>
-    </motion.div>
+    <AnimatePresence>
+      <motion.div className="lecture-popup-container">
+        <motion.div
+          initial={{ scale: 0.5 }}
+          animate={{ scale: [0.5, 1] }}
+          exit={{ scale: 0.5 }}
+          transition={{ duration: 0.5, type: 'tween' }}
+          // transition={{ type: 'spring', stiffness: 700, damping: 35 }}
+          ref={ref}
+          className="lecture-popup-content"
+        >
+          <div className="image-container">
+            <img src={urlFor(img)} alt={title} />
+          </div>
+          <div className="text-container">
+            <h3>{title}</h3>
+            <p>{content}</p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

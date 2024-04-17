@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable comma-dangle */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
@@ -69,7 +70,7 @@ const Services = () => {
         )}
       </div>
 
-      <motion.div
+      {/* <motion.div
         animate={animateCard}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
         className="app__service-portfolio"
@@ -123,7 +124,7 @@ const Services = () => {
             </div>
           </div>
         ))}
-      </motion.div>
+      </motion.div> */}
     </>
   );
 };
