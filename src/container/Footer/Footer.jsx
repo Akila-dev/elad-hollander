@@ -1,11 +1,18 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable comma-dangle */
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Fireworks from 'react-canvas-confetti/dist/presets/fireworks';
 
 import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { client } from '../../client';
 import './Footer.scss';
+
+import clapping from '../../assets/clapping.wav';
 
 const Footer = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +20,10 @@ const Footer = () => {
     email: '',
     message: '',
   });
+
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showFireworks, setShowFireworks] = useState(false);
 
   const { username, email, message } = formData;
 
@@ -23,24 +32,56 @@ const Footer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const playAudio = (audio) => {
+    const music = new Audio(audio);
+    music.playbackRate = 1;
+    music.play();
+    // music.onended = function (e) {
+    //   console.log('audio ended');
+    // };
+    // console.log('audio playing');
+  };
+
+  // const handleSubmit = () => {
+  //   setShowFireworks(true);
+  //   playAudio(clapping);
+
+  //   setTimeout(() => {
+  //     setShowFireworks(false);
+  //   }, 6000);
+  // };
+
   const handleSubmit = () => {
-    setLoading(true);
+    if (
+      formData.username !== '' &&
+      formData.email !== '' &&
+      formData.message !== ''
+    ) {
+      setLoading(true);
 
-    const contact = {
-      _type: 'contact',
-      name: formData.username,
-      email: formData.email,
-      message: formData.message,
-    };
+      const contact = {
+        _type: 'contact',
+        name: formData.username,
+        email: formData.email,
+        message: formData.message,
+      };
 
-    client
-      .create(contact)
-      .then(() => {
-        setLoading(false);
-        setIsFormSubmitted(true);
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      client
+        .create(contact)
+        .then(() => {
+          setLoading(false);
+          setIsFormSubmitted(true);
+
+          setShowFireworks(true);
+          playAudio(clapping);
+
+          setTimeout(() => {
+            setShowFireworks(false);
+          }, 6000);
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -92,13 +133,25 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>
+          <motion.button
+            whileInView={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            type="button"
+            className="p-tex"
+            onClick={handleSubmit}
+          >
             {!loading ? 'Send Message' : 'Sending...'}
-          </button>
+          </motion.button>
         </div>
       ) : (
         <div>
           <h3 className="head-text">Thank you for getting in touch!</h3>
+        </div>
+      )}
+      {showFireworks && (
+        <div className="overlay" style={{ pointerEvents: 'none' }}>
+          <Fireworks autorun={{ speed: 2 }} />
         </div>
       )}
     </>

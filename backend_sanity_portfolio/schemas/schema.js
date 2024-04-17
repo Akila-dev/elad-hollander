@@ -23,12 +23,12 @@ export default createSchema({
   types: schemaTypes.concat([
     mentorship,
     lectures,
-    works,
-    testimonials,
-    brands,
-    abouts,
-    workExperience,
-    experiences,
+    // works,
+    // testimonials,
+    // brands,
+    // abouts,
+    // workExperience,
+    // experiences,
     contact,
     /* Your types here! */
   ]),
