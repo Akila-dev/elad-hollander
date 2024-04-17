@@ -1,5 +1,6 @@
 import profile from '../assets/profile.png';
 import logo from '../assets/elad-logo.svg';
+import quoteProfile from '../assets/elad-quote.png';
 
 import linkedIn from '../assets/linkedIn.png';
 import twitter from '../assets/twitter.png';
@@ -44,6 +45,7 @@ import spotify from '../assets/spotify.png';
 export default {
   profile,
   logo,
+  quoteProfile,
   twitter,
   medium,
   linkedIn,

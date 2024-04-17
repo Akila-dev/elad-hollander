@@ -5,7 +5,11 @@ import { motion } from 'framer-motion';
 import { Tooltip } from 'react-tooltip';
 import { BsArrowRight } from 'react-icons/bs';
 import { FaHandshakeAngle } from 'react-icons/fa6';
+import { BiSolidQuoteRight, BiSolidQuoteLeft } from 'react-icons/bi';
+
 import { useStore } from '../../utils/config';
+
+import images from '../../constants/images';
 
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
@@ -106,6 +110,27 @@ const Lectures = () => {
             />
           </div>
         ))}
+      </div>
+
+      {/* QUOTE */}
+      <div className="quote-container">
+        <p className="quote-text">
+          <BiSolidQuoteRight className="quote-icon" />
+          <i>
+            If you want small changes, work on your behavior; if you want
+            quantum-leap changes, work on your paradigms.
+          </i>
+          <BiSolidQuoteLeft className="quote-icon" />
+        </p>
+        <div>
+          <div className="quote-image-container">
+            <img src={images.quoteProfile} alt="Elad" />
+          </div>
+          <div className="quoter">
+            <h3>Elad Hollander</h3>
+            <i>Business Consultant</i>
+          </div>
+        </div>
       </div>
 
       {showPopup && (

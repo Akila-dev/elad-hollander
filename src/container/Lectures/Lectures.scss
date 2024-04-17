@@ -140,3 +140,98 @@
     }
   }
 }
+
+.quote-container{
+  background: var(--gradient);
+  color: var(--white-color);
+  border-radius: 20px;
+  display: flex;
+  margin: 50px 0 0;
+  flex-direction: column;
+  align-items: center;
+  padding:40px 1.25rem;
+  gap:35px;
+  max-width: 900px;
+
+  .quote-text{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: start;
+    gap: 10px;
+
+    i{
+      padding: 10px 0 0 ;
+    }
+
+    .quote-icon{
+      font-size: 45px;
+      min-width: 22.5px;
+    }
+  }
+
+  div{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+
+    .quote-image-container{
+      width: 90px;
+      height:90px;
+
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .quoter{
+      flex-direction: column;
+      align-items: start;
+      gap: 5px;
+    }
+
+    h3{
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    i{
+      font-weight: 400;
+      font-size:14px;
+    }
+  }
+  
+  @media screen and (min-width: 700px){
+    padding:50px 50px;
+    .quote-text{
+      font-size: 22.5px;
+    }
+    .quote-icon{
+      font-size: 45px;
+      min-width: 25px;
+    }
+
+    div{
+    gap: 10px;
+    .quote-image-container{
+        width: 100px;
+        height:100px;
+      }
+      h3{
+        font-size: 20px;
+      }
+      i{
+        font-size:16px
+      }
+    }
+  }
+  
+  @media screen and (min-width: 1024px){
+
+    padding:50px 150px;
+  }
+}
