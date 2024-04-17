@@ -128,3 +128,27 @@
     margin: 1rem 0;
   }
 }
+
+.button{
+  padding: 10px 2rem;
+    border-radius: 2rem;
+    border: none;
+    background: var(--gradient);
+
+    font-weight: 500;
+    color: var(--white-color);
+    outline: none;
+    font-family: var(--font-base);
+
+    transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    font-size: 14px;
+
+    margin-top: 30px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 15px;
+    }
+}
