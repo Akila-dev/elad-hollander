@@ -11,15 +11,13 @@ import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Mentorship.scss';
 
-const Accordion = ({ title, description, id }) => (
-  <div className="mentorship-accordion">
-    <div className="icon-container">
-      <FaHandshakeAngle />
+const MentorshipCard = ({ img, title, description, id }) => (
+  <div className="mentorship-card">
+    <div className="image-container">
+      <img src={urlFor(img)} alt={title} />
     </div>
     <div className="text-container">
-      <h3>
-        {id}. {title}
-      </h3>
+      <h3>{title}</h3>
       <p>{description}</p>
     </div>
   </div>
@@ -41,12 +39,14 @@ const Mentorship = () => {
   return (
     <>
       <p className="hide-mobile">Services:</p>
-      <h2 className="head-text hide-mobile">Mentorship</h2>
+      <h2 className="head-text">
+        Business Mentorship <span>& Consulting</span>
+      </h2>
 
       <div className="mentorship-content_container">
         <div className="mentorship-content_left">
-          <h2>Business Mentorship & Consulting</h2>
-          <i />
+          {/* <h2>Business Mentorship & Consulting</h2>
+          <i /> */}
           <div>
             <p>{`My mentorship approach is holistic. I do not focus on just one aspect of your business, rather I join you steering the entire business. Together, we will craft an overarching strategy, connecting dots between your business's vision and the dynamic market landscape.
 
@@ -56,16 +56,12 @@ const Mentorship = () => {
             <span>Business Consultant</span>
             <span>Educator</span> */}
           </div>
-          <div className="pt-5">
-            <motion.a className="cta" href="#contact">
-              Click to Grow <BsArrowRight />
-            </motion.a>
-          </div>
         </div>
         <div className="mentorship-content_right">
           {mentorship.map((service, i) => (
             <div key={i}>
-              <Accordion
+              <MentorshipCard
+                img={service.imgurl}
                 title={translated ? service.titleHeb : service.titleEn}
                 description={
                   translated ? service.descriptionHeb : service.descriptionEn
@@ -74,6 +70,18 @@ const Mentorship = () => {
               />
             </div>
           ))}
+        </div>
+
+        <div className="pt-5">
+          <motion.a
+            whileInView={{ opacity: 1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="cta"
+            href="#contact"
+          >
+            Click to Grow <BsArrowRight />
+          </motion.a>
         </div>
       </div>
 

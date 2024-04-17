@@ -27,7 +27,7 @@ const LectureCard = ({ img, title, excerpt, onClick }) => (
     <div className="image-container">
       <img src={urlFor(img)} alt={title} />
     </div>
-    <h4>{title}</h4>
+    <h3>{title}</h3>
     <p>{excerpt.slice(0, 200)}...</p>
   </motion.div>
 );

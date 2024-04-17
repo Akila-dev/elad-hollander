@@ -49,6 +49,10 @@
     border-radius: 10px;
   }
 
+  h3{
+    font-weight: bold;
+  }
+
   @media screen and (min-width: 1040px) {
     width: 300px;
   }
@@ -79,6 +83,9 @@
 
     div{
       flex:1;
+    }
+    h3{
+      font-weight: bold;
     }
     
     .image-container{

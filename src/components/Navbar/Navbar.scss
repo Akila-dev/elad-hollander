@@ -90,7 +90,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
+  background: var(--gradient);
 
 
   svg {
@@ -109,9 +109,10 @@
     padding: 1rem;
 
     width: 80%;
+    max-width:300px;
     height: 100vh;
     
-    display: flex;
+    display: flex !important;
     justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
@@ -154,6 +155,7 @@
           font-weight: 500;
 
           transition: all 0.3s ease-in-out;
+          position: relative;
 
           &:hover {
             color: var(--secondary-color);
@@ -169,5 +171,55 @@
 
   @media screen and (min-width: 900px) {
     display: none;
+  }
+}
+
+.app__navbar-menu_container{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .language_toggle-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+  }
+
+  .language_toggle{
+    position: relative;
+    width: 45px;
+    height: 28px;
+    border-radius: 2.5rem;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    // box-shadow: var(--shadow);
+    border: 1px solid var(--secondary-color);
+    justify-content: start;
+
+    span{
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+    }
+  }
+  
+  .justify-end{
+    justify-content: end;
+    background: var(--gradient);
+    span{
+      background: var(--white-color);
+
+    }
+  }
+  .justify-start{
+    justify-content: start;
+    background: var(--white-color);
+    span{
+    background: var(--gradient);
+
+    }
   }
 }

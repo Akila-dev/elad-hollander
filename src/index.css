@@ -15,7 +15,8 @@
   --brown-color: #46364a;
   --white-color: #ffffff;
 
-  --gradient: linear-gradient(45deg, #002757, #0055BD)
+  --gradient: linear-gradient(45deg, #002757, #0055BD);
+  --shadow: 0 0px 10px 0 rgba( 31, 38, 135, 0.07 );
 }
 
 * {
